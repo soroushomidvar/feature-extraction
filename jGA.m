@@ -1,4 +1,4 @@
-function [sFeat,Sf,Nf,curve]=jGA(feat,label,N,T,CR,MR)
+function [sFeat,Sf,Nf,curve]=jGA(feat,label,N,T,CR,MR,numberOfFeatures)
 %---Inputs-----------------------------------------------------------------
 % feat:  features
 % label: labelling
@@ -19,17 +19,27 @@ fun=@jFitnessFunction;
 D=size(feat,2);
 % Initial population
 X=zeros(N,D); fit=zeros(1,N);
+% for i=1:N
+%   for d=1:D
+%     if rand() > 0.5
+%       X(i,d)=1;
+%     end
+%   end
+% end
+
 for i=1:N
-  for d=1:D
-    if rand() > 0.5
-      X(i,d)=1;
+    positions= fix(D*rand(1,numberOfFeatures))+1;
+    for j=1:numberOfFeatures
+        X(i,positions(j))=1;
     end
-  end
 end
+
 % Fitness 
 for i=1:N
   fit(i)=fun(feat,label,X(i,:));
 end
+% Normalize
+fit=fit/norm(fit); % we have Errors between 0 and 1
 % Pre
 curve=inf; t=1; 
 figure(1); clf; axis([1 100 0 0.5]); xlabel('Number of Iterations');
@@ -49,10 +59,34 @@ while t <= T
       % Store parents 
       P1=X(k1,:); P2=X(k2,:);
       % Random select one crossover point
-      ind=randi([1,D]);
+      %ind=randi([1,D]);
       % Single point crossover between 2 parents
-      X1(z,:)=[P1(1:ind),P2(ind+1:D)]; 
-      X2(z,:)=[P2(1:ind),P1(ind+1:D)]; z=z+1;
+      %X1(z,:)=[P1(1:ind),P2(ind+1:D)]; 
+      %X2(z,:)=[P2(1:ind),P1(ind+1:D)]; z=z+1;
+      P1features=find(P1==1);
+      P2features=find(P2==1);
+      features1=[P1features P2features];
+      features2=features1;
+      X1Features=zeros(1,numberOfFeatures);
+      X2Features=zeros(1,numberOfFeatures);
+      for oo=1:numberOfFeatures
+          ind=randperm(numel(features1),1);
+          X1Features(oo)= features1(ind);
+          features1(features1==X1Features(oo))=[];
+      end
+      for oo=1:numberOfFeatures
+          ind=randperm(numel(features2),1);
+          X2Features(oo)= features2(ind);
+          features2(features2==X2Features(oo))=[];
+      end
+      
+      for j=1:numberOfFeatures
+        X1(z,X1Features(j))=1;
+      end
+      for j=1:numberOfFeatures
+        X2(z,X2Features(j))=1;
+      end
+      
     end
   end
   % Union
