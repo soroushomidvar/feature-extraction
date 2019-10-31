@@ -48,41 +48,28 @@ label=table2array(lab(:,1));
 %--------------------------------------------
 
 
-close all; N=10; T=3; CR=0.8; MR=0.01; numberOfFetures=30;
-[sFeat,Sf,Nf,curve]=jGA(feat,label,N,T,CR,MR,numberOfFetures);
+%[mcord, mcovd, pValue, tStatistic, dof] = mcorrdis(label,feat);
+
+
+
+% close all; N=10; T=3; CR=0.8; MR=0.01; numberOfFetures=30;
+% [sFeat,Sf,Nf,curve]=jGA(feat,label,N,T,CR,MR,numberOfFetures);
 
 % Plot convergence curve
-figure(); plot(1:T,curve); xlabel('Number of Iterations');
-ylabel('Fitness Value'); title('GA'); grid on;
+%figure(); plot(1:T,curve); xlabel('Number of Iterations');
+%label('Fitness Value'); title('GA'); grid on;
 % 
 % %% (Method 2) GA version 2 
 % % Assume the chromosomes with CR probabilities are used in selection process 
-% close all; N=10; T=10; CR=0.8; MR=0.01; 
-% [sFeat,Sf,Nf,curve]=jGA2(feat,label,N,T,CR,MR);
+ close all; N=150; T=25; CR=0.8; MR=0.01; 
+ [sFeat,Sf,Nf,curve]=jGA2(feat,label,N,T,CR,MR);
 % 
 % % Plot convergence curve
-% figure(); plot(1:T,curve); xlabel('Number of Iterations');
-% ylabel('Fitness Value'); title('GA2'); grid on;
+ figure(); plot(1:T,curve); xlabel('Number of Iterations');
+ ylabel('Fitness Value'); title('GA2'); grid on;
 
 %--------------------------------------------
 %Result
-findFeatures(feat,Sf)
+findFeatures(feat_table,Sf)
 
-
-
-function y= findFeatures(feat_table,Sf)
-a=[
-find(strcmpi(feat_table.Properties.VariableNames,'WASHLOAD'))
-find(strcmpi(feat_table.Properties.VariableNames,'DRYRUSE'))
-find(strcmpi(feat_table.Properties.VariableNames,'LGTOUTNUM'))
-find(strcmpi(feat_table.Properties.VariableNames,'TOTALBTUSPH'))
-find(strcmpi(feat_table.Properties.VariableNames,'DOLELAHUHEAT'))
-find(strcmpi(feat_table.Properties.VariableNames,'TOTALDOLSPH'))
-find(strcmpi(feat_table.Properties.VariableNames,'SOLAR'))
-find(strcmpi(feat_table.Properties.VariableNames,'TOTROOMS'))
-find(strcmpi(feat_table.Properties.VariableNames,'WINDOWS'))
-find(strcmpi(feat_table.Properties.VariableNames,'MONEYPY'))
-];
-y = ismember(a',Sf);
-end
 
