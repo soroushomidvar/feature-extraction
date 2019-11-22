@@ -1,4 +1,4 @@
-function [NData]         = NormalizeFunction_2(Data)
+function [NData]         = Normalize(Data)
 Dmin                      = min(Data); 
 Dmax                      = max(Data);
 diff                      = Dmax-Dmin;

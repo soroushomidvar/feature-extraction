@@ -36,6 +36,12 @@ out_3 = sort_table(mcord_normalized_features_table,3);
 out_4 = sort_table(mcord_normalized_features_table,4);
 out_5 = sort_table(mcord_normalized_features_table,5);
 
+%load out_1.mat;
+%load out_2.mat;
+%load out_3.mat;
+%load out_4.mat;
+%load out_5.mat;
+
 cat_1=[]; cat_2=[]; cat_3=[]; cat_4=[]; cat_5=[];
 des_1=[]; des_2=[]; des_3=[]; des_4=[]; des_5=[]; 
 for i = 1:size(normalized_features,2)
