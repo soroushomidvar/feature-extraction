@@ -10,8 +10,7 @@ load continuous_feat_with_NaN.mat;
 %create dictionary
 M_cat = containers.Map(cellstr(char(table2array(dic(:,1)))),cellstr(char(table2array(dic(:,2)))),'UniformValues',false);
 M_des = containers.Map(cellstr(char(table2array(dic(:,1)))),cellstr(char(table2array(dic(:,5)))),'UniformValues',false);
-%feat=[justNumbercsv(:,1:394) justNumbercsv(:,397:418)]; % remove labels from dataset: TOTALBTU,TOTALDOL
-feat=continuous_feat_with_NaN;
+feat=[justNumbercsv(:,1:394) justNumbercsv(:,397:418)]; % remove labels from dataset: TOTALBTU,TOTALDOL
 feat_table=feat;
 feat=table2array(feat);
 label=table2array(lab(:,1));

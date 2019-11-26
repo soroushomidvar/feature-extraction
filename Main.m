@@ -9,7 +9,8 @@ load justNumber.mat;
 % fff=[zzz;ooo];
 % Call features & labels
 %feat=myDataForDataMiningwithoutFlagcsv(:,5:100);
-feat=[justNumbercsv(:,1:394) justNumbercsv(:,397:418)]; % remove labels from dataset: TOTALBTU,TOTALDOL 
+feat=[justNumbercsv(:,1:394) justNumbercsv(:,397:418)]; % remove labels from dataset: TOTALBTU ,TOTALDOL %Label: TOTALBTU
+
 feat_table=feat;
 feat=table2array(feat);
 
