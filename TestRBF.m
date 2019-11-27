@@ -1,6 +1,6 @@
 clc, clear, close
-load label.mat;
-load justNumber.mat;
+load mat/label.mat;
+load mat/justNumber.mat;
 feat=[justNumbercsv(:,1:394) justNumbercsv(:,397:418)];
 label=table2array(lab(:,1));
 feat=table2array(feat);

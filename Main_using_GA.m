@@ -2,8 +2,8 @@
 clc, clear, close 
 % Benchmark data set contains 351 instances and 34 features (binary class)
 %load first.mat; % Matlab also provides this dataset (load Ionosphere.mat)
-load label.mat;
-load justNumber.mat;
+load mat/label.mat;
+load mat/justNumber.mat;
 % zzz=zeros(5600,1);
 % ooo=ones(86,1);
 % fff=[zzz;ooo];
