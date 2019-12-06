@@ -3,7 +3,6 @@ clc, clear, close
 load mat/label.mat;
 load mat/feat_with_NaN.mat
 
-%   only continuous features
 feat=feat_with_NaN; 
 feat_table=feat;
 feat=table2array(feat);
