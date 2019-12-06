@@ -22,7 +22,7 @@ function [mcord, mcovd, pValue, tStatistic, dof] = mcorrdis(x,y)
 %       mcord : Modified correlation distance
 %       mcovd : Modified covariance distance
 %
-%   This implementation is based on Székely, G. J., & Rizzo, M. L. (2013).
+%   This implementation is based on Szekely, G. J., & Rizzo, M. L. (2013).
 %   The distance correlation t-test of independence in high dimension.
 %   Journal of Multivariate Analysis, 117, 193-213.
 %

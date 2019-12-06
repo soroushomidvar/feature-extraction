@@ -10,5 +10,6 @@ for i=1:size(feat,1)
         end
     end
 end
-feat_with_NaN= after_pre;
-continuous_feat_with_NaN= after_pre(:,260:end-8);
+feat_with_NaN= after_pre;  % all features with NaN
+continuous_feat_with_NaN= after_pre(:,260:end-8); % conituous features with NaN
+discrete_feat_with_NaN= [after_pre(:,1:259),after_pre(:,end-7:end) ]; % discrete features with NaN
