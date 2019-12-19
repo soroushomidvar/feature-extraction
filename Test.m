@@ -26,7 +26,8 @@ fanal_dataset_table= feat_table(:,selected_features==1);
 fanal_dataset=table2array(fanal_dataset_table);
 
 %run k-means
-[idx_kmeans,c_kmeans]=kmeans(fanal_dataset,5);
+%[idx_kmeans,c_kmeans]=kmeans(fanal_dataset,5);
+load mat/kmeans_py.mat;
 
 %run db-scan
 epsilon=1;
