@@ -4,20 +4,22 @@ load mat/dic.mat;
 load mat/label.mat;
 load mat/justNumber.mat;
 load mat/continuous_feat_with_NaN.mat;
-load mat/feat_with_NaN.mat
+load mat/feat_with_NaN.mat;
+
 
 %   create dictionary
 M_cat = containers.Map(cellstr(char(table2array(dic(:,1)))),cellstr(char(table2array(dic(:,2)))),'UniformValues',false);
 M_des = containers.Map(cellstr(char(table2array(dic(:,1)))),cellstr(char(table2array(dic(:,5)))),'UniformValues',false);
 
-%   remove labels from dataset: TOTALBTU,TOTALDOL
-%feat=[justNumbercsv(:,1:394) justNumbercsv(:,397:418)];
+%   remove labels from dataset: TOTALBTU,TOTALDOL (all features with -2,-8,-9)
+feat=[justNumbercsv(:,1:394) justNumbercsv(:,397:418)];
 
 %   only continuous features
 %feat=continuous_feat_with_NaN; 
 
 %   only continuous features
-feat=feat_with_NaN; 
+%feat=feat_with_NaN; 
+
 feat_table=feat;
 feat=table2array(feat);
 label=table2array(lab(:,1));
@@ -35,8 +37,8 @@ for i = 1:size(normalized_features,2)
     [feature_without_NaN,label_without_NaN]= remove_NaN(normalized_features(:,i),normalized_label);
     
     %   normalize label and selected feature
-    normalized_feature_without_NaN=Normalize(feature_without_NaN);
-    normalized_label_without_NaN=Normalize(label_without_NaN);
+    normalized_feature_without_NaN=normalize_function(feature_without_NaN);
+    normalized_label_without_NaN=normalize_function(label_without_NaN);
     
     %   run mcorrdis
     [mcord, mcovd, pValue, tStatistic, dof] = mcorrdis(normalized_feature_without_NaN,normalized_label_without_NaN);
